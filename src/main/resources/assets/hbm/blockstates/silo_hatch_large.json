@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "normal": {
+      "model": "hbm:silo_hatch_large"
+    }
+  }
+}

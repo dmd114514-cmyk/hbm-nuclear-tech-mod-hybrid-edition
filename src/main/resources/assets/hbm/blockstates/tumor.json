@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "normal": [
+      {
+        "model": "hbm:tumor",
+        "weight": 1
+      },
+      {
+        "model": "hbm:tumor_1",
+        "weight": 1
+      },
+      {
+        "model": "hbm:tumor_2",
+        "weight": 1
+      },
+      {
+        "model": "hbm:tumor_3",
+        "weight": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,257 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+version = '1.0.0'
+group = 'com.hbm'
+archivesBaseName = 'hbm'
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+// Everything in the tree is UTF-8 (comments included); without this javac falls back to the platform encoding and blows up
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    if(project.hasProperty('lintDep')) options.compilerArgs << '-Xlint:deprecation'
+}
+
+minecraft {
+    mappings channel: 'snapshot', version: '20171003-1.12'
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+        }
+
+        server {
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+        }
+    }
+}
+
+// CraftTweaker is only borrowed for its annotations and facade API at compile time - it never ends up in the jar and is not a hard dependency:
+// @ZenRegister/@ModOnly live in CraftTweaker2-API, while @ZenClass/@ZenMethod actually live in the ZenScript artifact
+// (package stanhebben.zenscript.annotations - the API jar does not have those two), so both artifacts are needed, miss one and the symbols will not resolve.
+repositories {
+    maven { url = 'https://maven.blamejared.com/' }
+    // JEI's official release repo. JEI is an optional compat target: only its api artifact is referenced at compile time, nothing is bundled.
+    maven { url = 'https://dvs1.progwml6.com/files/maven' }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2864'
+    compileOnly 'CraftTweaker2:CraftTweaker2-API:4.1.20.716'
+    compileOnly 'CraftTweaker2:ZenScript:4.1.20.716'
+    compileOnly 'mezz.jei:jei_1.12.2:4.16.1.302:api'
+}
+
+processResources {
+    inputs.property 'version', project.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': '1.12.2'
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+            "Specification-Title"     : "hbm",
+            "Specification-Vendor"    : "vanillaDev",
+            "Specification-Version"   : "1",
+            "Implementation-Title"    : project.name,
+            "Implementation-Version"  : "${version}",
+            "Implementation-Vendor"   : "vanillaDev",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+// FG3 no longer folds resources into the classes dir, and FML refuses to load a loose directory mod,
+// so the resources and classes output dirs are merged by hand here, letting runClient eat the source tree directly.
+sourceSets.each {
+    def dir = layout.buildDirectory.file("sourcesSets/$it.name").get().asFile
+    it.output.resourcesDir = dir
+    it.java.outputDir = dir
+}
+
+// ===========================================================================
+// Build-time fix: on 1.12.2, FG 3.0.197 merges the mergetool jar's
+// net/minecraftforge/fml/relauncher/Side - the one carrying an extra BUKKIT constant - into the dev jar too. Once Side has three values,
+// FML's own NetworkRegistry.newChannel walks Side.values() and NPEs, and the game crashes right there during mod construction.
+// So that class is swapped back for the clean copy from the official universal jar. Both the upstream mergetool and the
+// official universal md5s were checked: the problem is the pipeline's merge order, not the source.
+// Only the dev jar is touched; the release artifact and the source tree are unaffected, and it redoes itself after a clean cache or a machine swap.
+// ===========================================================================
+ext.forgeMcVersion = '1.12.2-14.23.5.2864'
+
+/** Read an entry out of a jar; returns null when it is not there */
+def readJarEntry(File jar, String name) {
+    def zin = new java.util.zip.ZipInputStream(new FileInputStream(jar))
+    try {
+        def e
+        while ((e = zin.nextEntry) != null) {
+            if (e.name == name) {
+                def out = new ByteArrayOutputStream()
+                out << zin
+                return out.toByteArray()
+            }
+        }
+    } finally {
+        zin.close()
+    }
+    return null
+}
+
+/** Replace an entry in the jar in place; duplicates are dropped (ZipOutputStream will not take the same name twice) */
+def replaceJarEntry(File jar, String name, byte[] content) {
+    def tmp = new File(jar.parentFile, jar.name + '.repairing')
+    def seen = new HashSet<String>()
+    def zin = new java.util.zip.ZipInputStream(new FileInputStream(jar))
+    def zout = new java.util.zip.ZipOutputStream(new FileOutputStream(tmp))
+    try {
+        def e
+        def buf = new byte[8192]
+        while ((e = zin.nextEntry) != null) {
+            if (!seen.add(e.name)) continue
+            zout.putNextEntry(new java.util.zip.ZipEntry(e.name))
+            if (e.name == name) {
+                zout.write(content)
+            } else {
+                int n
+                while ((n = zin.read(buf)) > 0) zout.write(buf, 0, n)
+            }
+            zout.closeEntry()
+        }
+    } finally {
+        zout.close()
+        zin.close()
+    }
+    java.nio.file.Files.move(tmp.toPath(), jar.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+}
+
+def sha1Of(File f) {
+    def digest = java.security.MessageDigest.getInstance('SHA-1').digest(f.bytes)
+    return new BigInteger(1, digest).toString(16).padLeft(40, '0')
+}
+
+tasks.register('repairForgeDevJar') {
+    description = 'Restores the polluted Side.class in the 1.12.2 dev jar FG generates to the official version'
+    group = 'forge'
+
+    doLast {
+        def entry = 'net/minecraftforge/fml/relauncher/Side.class'
+        def gradleHome = gradle.gradleUserHomeDir
+        def universal = new File(gradleHome,
+                "caches/forge_gradle/maven_downloader/net/minecraftforge/forge/${forgeMcVersion}/forge-${forgeMcVersion}-universal.jar")
+
+        // Resolve the minecraft dependency first, so FG has already generated/downloaded the dev jar
+        try {
+            configurations.findByName('minecraft')?.files
+        } catch (Exception ignored) {
+        }
+
+        def devJar = null
+        def dir = new File(gradleHome, 'caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge')
+        if (dir.isDirectory()) {
+            dir.eachFileRecurse { f ->
+                if (devJar == null && f.isFile() && f.name.startsWith("forge-${forgeMcVersion}_mapped_") && f.name.endsWith('.jar')) {
+                    devJar = f
+                }
+            }
+        }
+
+        if (devJar == null || !universal.isFile()) {
+            logger.warn('[repairForgeDevJar] dev jar or official universal jar not ready; skipping (auto-retries next build)')
+            return
+        }
+
+        def clean = readJarEntry(universal, entry)
+        if (clean == null) {
+            logger.warn('[repairForgeDevJar] no Side.class in the official jar; skipping')
+            return
+        }
+
+        def dirty = readJarEntry(devJar, entry)
+        if (dirty == null || !new String(dirty, 'ISO-8859-1').contains('BUKKIT')) {
+            logger.lifecycle("[repairForgeDevJar] ${devJar.name}'s Side is already the clean version, nothing to repair")
+            return
+        }
+
+        replaceJarEntry(devJar, entry, clean)
+        // Also update FG's recorded checksum, or it decides the cache is stale and regenerates the dirty jar again
+        def sha1File = new File(devJar.parentFile, devJar.name + '.sha1')
+        if (sha1File.isFile()) sha1File.text = sha1Of(devJar)
+        logger.lifecycle("[repairForgeDevJar] repaired the polluted Side.class in ${devJar.name}")
+    }
+}
+
+// ===========================================================================
+// Module lang fragment merge (contract 12.4): 1.12.2 reads only assets/<domain>/lang/<code>.lang,
+// so a module carrying its own lang can only be merged into that one file at build time - there is no runtime concatenation.
+// In the source tree each module writes its own fragments/<module>/<code>.lang; they are only merged in the output dir -
+// that way the files stay independent and git stays quiet, while the build output is still the single file the game reads.
+// ===========================================================================
+tasks.register('mergeModuleLang') {
+    doLast {
+        def langDir = file("${buildDir}/sourcesSets/main/assets/hbm/lang")
+        if (!langDir.isDirectory()) {
+            logger.lifecycle("[mergeLang] no lang directory in the output yet; skipping")
+            return
+        }
+        exec {
+            workingDir projectDir
+            commandLine 'python3', 'tools/merge_lang.py', langDir.absolutePath
+        }
+    }
+}
+
+tasks.named('processResources') { finalizedBy 'mergeModuleLang' }
+
+// Runs before both compile and run, so the Side on the classpath is always the clean one
+tasks.matching { it.name in ['compileJava', 'runClient', 'runServer'] }.configureEach {
+    dependsOn 'repairForgeDevJar'
+}
+
+// ===========================================================================
+// Dev title (contract 13): passes -PdevTitle=... through as a JVM system property,
+// which the client writes into the window title on the first tick, so a glance at any runClient says who is testing what.
+// Without -PdevTitle it is an empty string, the client leaves the title alone, behaviour is as before.
+// ===========================================================================
+tasks.matching { it.name in ['runClient', 'runServer'] }.configureEach {
+    // Both tasks are plain JavaExec in practice; FG 3.0.197 has no property(...) DSL layer,
+    // so systemProperty on JavaExec is used directly - the JVM still sees -Dhbm.devTitle=...
+    systemProperty 'hbm.devTitle', (project.findProperty('devTitle') ?: '')
+}

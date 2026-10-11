@@ -1,0 +1,66 @@
+package com.hbm.items.machine;
+
+import java.util.List;
+import java.util.Locale;
+
+import com.hbm.items.ItemEnumMulti;
+
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+
+/**
+ * The drill bits. Ten material tiers, speed/grade/fortune/vein/silk touching climbing per tier.
+ * Each tier has its own texture (`drillbit_<enum lowercase>`) and name with the same suffix, so models hang by enum suffix
+ */
+public class ItemDrillbit extends ItemEnumMulti {
+
+	public ItemDrillbit() {
+		super(EnumDrillType.class, true, true);
+	}
+
+	@Override
+	public String getUnlocalizedName(ItemStack stack) {
+		return super.getUnlocalizedName() + "_" + grab(theEnum, stack.getItemDamage()).name().toLowerCase(Locale.US);
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World world, List<String> list, ITooltipFlag flag) {
+
+		EnumDrillType type = (EnumDrillType) grab(theEnum, stack.getItemDamage());
+
+		list.add(TextFormatting.YELLOW + "Speed: " + ((int) (type.speed * 100)) + "%");
+		list.add(TextFormatting.YELLOW + "Tier: " + type.tier);
+		if(type.fortune > 0) list.add(TextFormatting.LIGHT_PURPLE + "Fortune " + type.fortune);
+		if(type.vein) list.add(TextFormatting.GREEN + "Vein miner");
+		if(type.silk) list.add(TextFormatting.GREEN + "Silk touch");
+	}
+
+	public static enum EnumDrillType {
+		STEEL			(1.0D, 1, 0, false, false),
+		STEEL_DIAMOND	(1.0D, 1, 2, false, true),
+		HSS				(1.2D, 2, 0, true, false),
+		HSS_DIAMOND		(1.2D, 2, 3, true, true),
+		DESH			(1.5D, 3, 1, true, true),
+		DESH_DIAMOND	(1.5D, 3, 4, true, true),
+		TCALLOY			(2.0D, 4, 1, true, true),
+		TCALLOY_DIAMOND	(2.0D, 4, 4, true, true),
+		FERRO			(2.5D, 5, 1, true, true),
+		FERRO_DIAMOND	(2.5D, 5, 4, true, true);
+
+		public double speed;
+		public int tier;
+		public int fortune;
+		public boolean vein;
+		public boolean silk;
+
+		private EnumDrillType(double speed, int tier, int fortune, boolean vein, boolean silk) {
+			this.speed = speed;
+			this.tier = tier;
+			this.fortune = fortune;
+			this.vein = vein;
+			this.silk = silk;
+		}
+	}
+}

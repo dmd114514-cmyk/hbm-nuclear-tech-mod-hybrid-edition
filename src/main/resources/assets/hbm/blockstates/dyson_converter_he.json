@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "normal": {
+      "model": "hbm:dyson_converter_he"
+    }
+  }
+}

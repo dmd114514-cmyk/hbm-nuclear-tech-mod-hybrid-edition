@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "hbm:vinyl_log"
+    },
+    "axis=z": {
+      "model": "hbm:vinyl_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "hbm:vinyl_log",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "hbm:foundry_outlet"
+    },
+    "facing=east": {
+      "model": "hbm:foundry_outlet",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "hbm:foundry_outlet",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "hbm:foundry_outlet",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:hidden"
+    },
+    "meta=1": {
+      "model": "hbm:hidden"
+    },
+    "meta=2": {
+      "model": "hbm:hidden"
+    },
+    "meta=3": {
+      "model": "hbm:hidden"
+    },
+    "meta=4": {
+      "model": "hbm:hidden"
+    },
+    "meta=5": {
+      "model": "hbm:hidden"
+    },
+    "meta=6": {
+      "model": "hbm:hidden"
+    },
+    "meta=7": {
+      "model": "hbm:hidden"
+    },
+    "meta=8": {
+      "model": "hbm:hidden"
+    },
+    "meta=9": {
+      "model": "hbm:hidden"
+    },
+    "meta=10": {
+      "model": "hbm:hidden"
+    },
+    "meta=11": {
+      "model": "hbm:hidden"
+    },
+    "meta=12": {
+      "model": "hbm:rail_large_switch_flipped"
+    },
+    "meta=13": {
+      "model": "hbm:rail_large_switch_flipped"
+    },
+    "meta=14": {
+      "model": "hbm:rail_large_switch_flipped"
+    },
+    "meta=15": {
+      "model": "hbm:rail_large_switch_flipped"
+    }
+  }
+}

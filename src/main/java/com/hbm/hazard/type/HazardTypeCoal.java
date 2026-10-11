@@ -1,0 +1,45 @@
+package com.hbm.hazard.type;
+
+import java.util.List;
+
+import com.hbm.config.RadiationConfig;
+import com.hbm.extprop.HbmLivingProps;
+import com.hbm.hazard.modifier.HazardModifier;
+import com.hbm.util.ArmorRegistry;
+import com.hbm.util.ArmorUtil;
+import com.hbm.util.i18n.I18nUtil;
+
+import api.hbm.hazard.HazardClass;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+
+/** Coarse dust (coal dust and such); how much you inhale scales with how many you are holding */
+public class HazardTypeCoal extends HazardTypeBase {
+
+	@Override
+	public void onUpdate(EntityLivingBase target, float level, ItemStack stack) {
+
+		if(RadiationConfig.disableCoal)
+			return;
+
+		if(!ArmorRegistry.hasProtection(target, 3, HazardClass.PARTICLE_COARSE)) {
+			HbmLivingProps.incrementBlackLung(target, (int) Math.min(level * stack.getCount(), 10));
+		} else {
+			// It wears the filter even when blocked, faster the more you carry; 65 is roughly one full stack per wear tick
+			if(target.getEntityWorld().rand.nextInt(Math.max(65 - stack.getCount(), 1)) == 0) {
+				ArmorUtil.damageGasMaskFilter(target, (int) level);
+			}
+		}
+	}
+
+	@Override
+	public void updateEntity(EntityItem item, float level) { }
+
+	@Override
+	public void addHazardInformation(EntityPlayer player, List<String> list, float level, ItemStack stack, List<HazardModifier> modifiers) {
+		list.add(TextFormatting.DARK_GRAY + "[" + I18nUtil.resolveKey("trait.coal") + "]");
+	}
+}

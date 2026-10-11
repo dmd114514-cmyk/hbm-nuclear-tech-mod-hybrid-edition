@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "variant=base": {
+      "model": "hbm:ct/blocks/platemetal.base"
+    },
+    "variant=black": {
+      "model": "hbm:ct/blocks/platemetal.black"
+    },
+    "variant=white": {
+      "model": "hbm:ct/blocks/platemetal.white"
+    },
+    "variant=red": {
+      "model": "hbm:ct/blocks/platemetal.red"
+    },
+    "variant=green": {
+      "model": "hbm:ct/blocks/platemetal.green"
+    },
+    "variant=light_gray": {
+      "model": "hbm:ct/blocks/platemetal.light_gray"
+    },
+    "variant=blue": {
+      "model": "hbm:ct/blocks/platemetal.blue"
+    },
+    "variant=purple": {
+      "model": "hbm:ct/blocks/platemetal.purple"
+    },
+    "variant=cyan": {
+      "model": "hbm:ct/blocks/platemetal.cyan"
+    },
+    "variant=pink": {
+      "model": "hbm:ct/blocks/platemetal.pink"
+    },
+    "variant=lime": {
+      "model": "hbm:ct/blocks/platemetal.lime"
+    },
+    "variant=yellow": {
+      "model": "hbm:ct/blocks/platemetal.yellow"
+    },
+    "variant=light_blue": {
+      "model": "hbm:ct/blocks/platemetal.light_blue"
+    },
+    "variant=magenta": {
+      "model": "hbm:ct/blocks/platemetal.magenta"
+    },
+    "variant=orange": {
+      "model": "hbm:ct/blocks/platemetal.orange"
+    }
+  }
+}

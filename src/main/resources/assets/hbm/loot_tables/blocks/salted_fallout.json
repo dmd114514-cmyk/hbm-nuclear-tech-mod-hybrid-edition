@@ -1,0 +1,15 @@
+{
+  "pools": [
+    {
+      "name": "salted_fallout_layer",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "hbm:fallout",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "side": "hbm:blocks/primed_log_side",
+    "top": "hbm:blocks/primed_log_top",
+    "bottom": "hbm:blocks/primed_log_top"
+  }
+}

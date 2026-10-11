@@ -1,0 +1,15 @@
+{
+  "pools": [
+    {
+      "name": "duna_rock_core",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "hbm:duna_cobble",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

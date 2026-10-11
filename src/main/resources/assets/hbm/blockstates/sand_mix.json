@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "variant=boron": {
+      "model": "hbm:sand_mix_boron"
+    },
+    "variant=lead": {
+      "model": "hbm:sand_mix_lead"
+    },
+    "variant=uranium": {
+      "model": "hbm:sand_mix_uranium"
+    },
+    "variant=polonium": {
+      "model": "hbm:sand_mix_polonium"
+    },
+    "variant=quartz": {
+      "model": "hbm:sand_mix_quartz"
+    }
+  }
+}

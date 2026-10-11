@@ -1,0 +1,11 @@
+{
+  "parent": "item/generated",
+  "overrides": [
+    { "predicate": { "hbm:discover": 1 }, "model": "hbm:item/blueprints_discover" },
+    { "predicate": { "hbm:secret": 1 }, "model": "hbm:item/blueprints_secret" },
+    { "predicate": { "hbm:528": 1 }, "model": "hbm:item/blueprints_528" }
+  ],
+  "textures": {
+    "layer0": "hbm:items/blueprints"
+  }
+}

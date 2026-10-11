@@ -1,0 +1,15 @@
+{
+  "pools": [
+    {
+      "name": "ore_depth_borax",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "hbm:powder_borax",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

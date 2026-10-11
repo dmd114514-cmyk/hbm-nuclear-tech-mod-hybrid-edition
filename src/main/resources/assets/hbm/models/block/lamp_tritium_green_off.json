@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "hbm:blocks/lamp_tritium_green_off"
+  }
+}

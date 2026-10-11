@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "thickness=0": {
+      "model": "hbm:foam_layer"
+    },
+    "thickness=1": {
+      "model": "hbm:foam_layer_1"
+    },
+    "thickness=2": {
+      "model": "hbm:foam_layer_2"
+    },
+    "thickness=3": {
+      "model": "hbm:foam_layer_3"
+    },
+    "thickness=4": {
+      "model": "hbm:foam_layer_4"
+    },
+    "thickness=5": {
+      "model": "hbm:foam_layer_5"
+    },
+    "thickness=6": {
+      "model": "hbm:foam_layer_6"
+    },
+    "thickness=7": {
+      "model": "hbm:foam_layer_7"
+    }
+  }
+}

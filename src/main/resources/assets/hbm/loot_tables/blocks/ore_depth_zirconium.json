@@ -1,0 +1,24 @@
+{
+  "pools": [
+    {
+      "name": "ore_depth_zirconium",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "hbm:nugget_zirconium",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 3
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

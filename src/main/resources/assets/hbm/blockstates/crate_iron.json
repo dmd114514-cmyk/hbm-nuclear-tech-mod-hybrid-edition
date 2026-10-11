@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "heat=false": {
+      "model": "hbm:crate_iron"
+    },
+    "heat=true": {
+      "model": "hbm:crate_iron"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "normal": {
+      "model": "hbm:pole_satellite_receiver"
+    }
+  }
+}

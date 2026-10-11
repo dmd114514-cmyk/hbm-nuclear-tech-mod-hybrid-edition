@@ -1,0 +1,63 @@
+name: Bug report
+description: Crashes, broken textures or models, wrong machine behaviour, wrong recipes
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. **A crash without a log is almost impossible to chase**, so please fill in as much as you can.
+        For texture/model problems please say whether it is a purple-black block or a wrong shape - the two have completely
+        different causes.
+
+  - type: input
+    id: version
+    attributes:
+      label: Mod version / build
+      placeholder: e.g. main@dde1fdb6, or a release version number
+    validations:
+      required: true
+
+  - type: input
+    id: mcforge
+    attributes:
+      label: Minecraft and Forge version
+      placeholder: 1.12.2 / forge 14.23.5.2864
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens, and how to reproduce it
+      placeholder: |
+        1. Did...
+        2. Expected...
+        3. Got...
+    validations:
+      required: true
+
+  - type: textarea
+    id: log
+    attributes:
+      label: Log / crash report
+      description: Paste the relevant part of `logs/latest.log`, or the full `crash-reports/` file (you can drag the file in)
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: modlist
+    attributes:
+      label: Modpack and other mods
+      description: Required if you suspect a conflict; the single most useful sentence is whether it still happens with only this mod installed
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before posting
+      options:
+        - label: I can reproduce this on the latest `main` or the latest release
+        - label: I am confident this is this mod's problem (it still happens with only this mod installed, or it goes away without it)

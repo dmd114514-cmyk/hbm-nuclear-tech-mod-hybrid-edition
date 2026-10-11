@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "half=bottom,variant=concrete_smooth": {
+      "model": "hbm:concrete_smooth"
+    },
+    "half=top,variant=concrete_smooth": {
+      "model": "hbm:concrete_smooth"
+    },
+    "half=bottom,variant=concrete": {
+      "model": "hbm:concrete"
+    },
+    "half=top,variant=concrete": {
+      "model": "hbm:concrete"
+    },
+    "half=bottom,variant=concrete_asbestos": {
+      "model": "hbm:concrete_asbestos"
+    },
+    "half=top,variant=concrete_asbestos": {
+      "model": "hbm:concrete_asbestos"
+    },
+    "half=bottom,variant=ducrete_smooth": {
+      "model": "hbm:ducrete_smooth"
+    },
+    "half=top,variant=ducrete_smooth": {
+      "model": "hbm:ducrete_smooth"
+    },
+    "half=bottom,variant=ducrete": {
+      "model": "hbm:ducrete"
+    },
+    "half=top,variant=ducrete": {
+      "model": "hbm:ducrete"
+    },
+    "half=bottom,variant=asphalt": {
+      "model": "hbm:asphalt"
+    },
+    "half=top,variant=asphalt": {
+      "model": "hbm:asphalt"
+    }
+  }
+}

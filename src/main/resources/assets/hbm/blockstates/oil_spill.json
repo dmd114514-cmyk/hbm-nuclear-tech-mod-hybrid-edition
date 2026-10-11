@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "thickness=0": {
+      "model": "hbm:oil_spill"
+    },
+    "thickness=1": {
+      "model": "hbm:oil_spill_1"
+    },
+    "thickness=2": {
+      "model": "hbm:oil_spill_2"
+    },
+    "thickness=3": {
+      "model": "hbm:oil_spill_3"
+    },
+    "thickness=4": {
+      "model": "hbm:oil_spill_4"
+    },
+    "thickness=5": {
+      "model": "hbm:oil_spill_5"
+    },
+    "thickness=6": {
+      "model": "hbm:oil_spill_6"
+    },
+    "thickness=7": {
+      "model": "hbm:oil_spill_7"
+    }
+  }
+}

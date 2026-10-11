@@ -1,0 +1,6 @@
+{
+  "parent": "block/ladder",
+  "textures": {
+    "texture": "hbm:blocks/ladder_steel"
+  }
+}

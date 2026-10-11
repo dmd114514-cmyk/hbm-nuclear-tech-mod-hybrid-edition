@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "heat=false": {
+      "model": "hbm:safe"
+    },
+    "heat=true": {
+      "model": "hbm:safe"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "pools": [
+    {
+      "name": "brick_jungle_mystic",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "hbm:brick_jungle_mystic",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

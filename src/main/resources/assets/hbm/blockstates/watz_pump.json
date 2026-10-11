@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=1": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=2": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=3": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=4": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=5": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=6": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=7": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=8": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=9": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=10": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=11": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=12": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=13": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=14": {
+      "model": "hbm:watz_pump"
+    },
+    "meta=15": {
+      "model": "hbm:watz_pump"
+    }
+  }
+}

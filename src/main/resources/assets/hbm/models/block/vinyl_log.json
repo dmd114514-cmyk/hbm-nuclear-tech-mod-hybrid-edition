@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "side": "hbm:blocks/vinyl_log_side",
+    "top": "hbm:blocks/vinyl_log_top",
+    "bottom": "hbm:blocks/vinyl_log_top"
+  }
+}

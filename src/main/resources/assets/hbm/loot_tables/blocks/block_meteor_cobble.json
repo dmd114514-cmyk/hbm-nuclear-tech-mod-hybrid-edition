@@ -1,0 +1,15 @@
+{
+  "pools": [
+    {
+      "name": "block_meteor_cobble",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "hbm:fragment_meteorite",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

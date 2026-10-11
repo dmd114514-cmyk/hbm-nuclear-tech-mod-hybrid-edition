@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "normal": [
+      {
+        "model": "hbm:waste_trinitite",
+        "weight": 1
+      },
+      {
+        "model": "hbm:waste_trinitite_1",
+        "weight": 1
+      },
+      {
+        "model": "hbm:waste_trinitite_2",
+        "weight": 1
+      },
+      {
+        "model": "hbm:waste_trinitite_3",
+        "weight": 1
+      }
+    ]
+  }
+}

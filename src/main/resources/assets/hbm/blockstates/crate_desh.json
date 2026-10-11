@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "heat=false": {
+      "model": "hbm:crate_desh"
+    },
+    "heat=true": {
+      "model": "hbm:crate_desh"
+    }
+  }
+}

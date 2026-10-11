@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "normal": {
+      "model": "hbm:barrel_plastic"
+    }
+  }
+}

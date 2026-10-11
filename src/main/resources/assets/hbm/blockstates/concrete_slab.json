@@ -1,0 +1,46 @@
+{
+  "variants": {
+    "half=bottom,variant=concrete_smooth": {
+      "model": "hbm:concrete_slab_concrete_smooth"
+    },
+    "half=top,variant=concrete_smooth": {
+      "model": "hbm:concrete_slab_concrete_smooth",
+      "x": 180
+    },
+    "half=bottom,variant=concrete": {
+      "model": "hbm:concrete_slab_concrete"
+    },
+    "half=top,variant=concrete": {
+      "model": "hbm:concrete_slab_concrete",
+      "x": 180
+    },
+    "half=bottom,variant=concrete_asbestos": {
+      "model": "hbm:concrete_slab_concrete_asbestos"
+    },
+    "half=top,variant=concrete_asbestos": {
+      "model": "hbm:concrete_slab_concrete_asbestos",
+      "x": 180
+    },
+    "half=bottom,variant=ducrete_smooth": {
+      "model": "hbm:concrete_slab_ducrete_smooth"
+    },
+    "half=top,variant=ducrete_smooth": {
+      "model": "hbm:concrete_slab_ducrete_smooth",
+      "x": 180
+    },
+    "half=bottom,variant=ducrete": {
+      "model": "hbm:concrete_slab_ducrete"
+    },
+    "half=top,variant=ducrete": {
+      "model": "hbm:concrete_slab_ducrete",
+      "x": 180
+    },
+    "half=bottom,variant=asphalt": {
+      "model": "hbm:concrete_slab_asphalt"
+    },
+    "half=top,variant=asphalt": {
+      "model": "hbm:concrete_slab_asphalt",
+      "x": 180
+    }
+  }
+}

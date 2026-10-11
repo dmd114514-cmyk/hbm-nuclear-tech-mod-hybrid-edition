@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=north,variant=iron": {
+      "model": "hbm:mass_storage_iron"
+    },
+    "facing=east,variant=iron": {
+      "model": "hbm:mass_storage_iron",
+      "y": 90
+    },
+    "facing=south,variant=iron": {
+      "model": "hbm:mass_storage_iron",
+      "y": 180
+    },
+    "facing=west,variant=iron": {
+      "model": "hbm:mass_storage_iron",
+      "y": 270
+    },
+    "facing=north,variant=desh": {
+      "model": "hbm:mass_storage_desh"
+    },
+    "facing=east,variant=desh": {
+      "model": "hbm:mass_storage_desh",
+      "y": 90
+    },
+    "facing=south,variant=desh": {
+      "model": "hbm:mass_storage_desh",
+      "y": 180
+    },
+    "facing=west,variant=desh": {
+      "model": "hbm:mass_storage_desh",
+      "y": 270
+    },
+    "facing=north,variant=standard": {
+      "model": "hbm:mass_storage"
+    },
+    "facing=east,variant=standard": {
+      "model": "hbm:mass_storage",
+      "y": 90
+    },
+    "facing=south,variant=standard": {
+      "model": "hbm:mass_storage",
+      "y": 180
+    },
+    "facing=west,variant=standard": {
+      "model": "hbm:mass_storage",
+      "y": 270
+    },
+    "facing=north,variant=wood": {
+      "model": "hbm:mass_storage_wood"
+    },
+    "facing=east,variant=wood": {
+      "model": "hbm:mass_storage_wood",
+      "y": 90
+    },
+    "facing=south,variant=wood": {
+      "model": "hbm:mass_storage_wood",
+      "y": 180
+    },
+    "facing=west,variant=wood": {
+      "model": "hbm:mass_storage_wood",
+      "y": 270
+    }
+  }
+}

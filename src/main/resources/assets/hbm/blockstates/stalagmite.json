@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "variant=sulfur": {
+      "model": "hbm:stalagmite_sulfur"
+    },
+    "variant=asbestos": {
+      "model": "hbm:stalagmite_asbestos"
+    },
+    "variant=flesh": {
+      "model": "hbm:stalagmite_flesh"
+    },
+    "variant=ice": {
+      "model": "hbm:stalagmite_ice"
+    },
+    "variant=snow": {
+      "model": "hbm:stalagmite_snow"
+    },
+    "variant=glyphid1": {
+      "model": "hbm:stalagmite_glyphid1"
+    },
+    "variant=glyphid2": {
+      "model": "hbm:stalagmite_glyphid2"
+    },
+    "variant=glyphid3": {
+      "model": "hbm:stalagmite_glyphid3"
+    }
+  }
+}

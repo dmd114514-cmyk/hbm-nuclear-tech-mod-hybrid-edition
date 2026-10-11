@@ -1,0 +1,39 @@
+{
+  "variants": {
+    "half=bottom,variant=brick_concrete": {
+      "model": "hbm:concrete_brick_slab_brick_concrete"
+    },
+    "half=top,variant=brick_concrete": {
+      "model": "hbm:concrete_brick_slab_brick_concrete",
+      "x": 180
+    },
+    "half=bottom,variant=brick_concrete_mossy": {
+      "model": "hbm:concrete_brick_slab_brick_concrete_mossy"
+    },
+    "half=top,variant=brick_concrete_mossy": {
+      "model": "hbm:concrete_brick_slab_brick_concrete_mossy",
+      "x": 180
+    },
+    "half=bottom,variant=brick_concrete_cracked": {
+      "model": "hbm:concrete_brick_slab_brick_concrete_cracked"
+    },
+    "half=top,variant=brick_concrete_cracked": {
+      "model": "hbm:concrete_brick_slab_brick_concrete_cracked",
+      "x": 180
+    },
+    "half=bottom,variant=brick_concrete_broken": {
+      "model": "hbm:concrete_brick_slab_brick_concrete_broken"
+    },
+    "half=top,variant=brick_concrete_broken": {
+      "model": "hbm:concrete_brick_slab_brick_concrete_broken",
+      "x": 180
+    },
+    "half=bottom,variant=brick_ducrete": {
+      "model": "hbm:concrete_brick_slab_brick_ducrete"
+    },
+    "half=top,variant=brick_ducrete": {
+      "model": "hbm:concrete_brick_slab_brick_ducrete",
+      "x": 180
+    }
+  }
+}

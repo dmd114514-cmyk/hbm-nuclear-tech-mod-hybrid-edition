@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "heat=false": {
+      "model": "hbm:crate_tungsten"
+    },
+    "heat=true": {
+      "model": "hbm:crate_tungsten"
+    }
+  }
+}

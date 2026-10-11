@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "hbm:blocks/rad_log_top",
+    "side": "hbm:blocks/rad_log_side"
+  }
+}

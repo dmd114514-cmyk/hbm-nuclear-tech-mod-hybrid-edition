@@ -1,0 +1,15 @@
+{
+  "pools": [
+    {
+      "name": "cluster_depth_titanium",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "hbm:crystal_titanium",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

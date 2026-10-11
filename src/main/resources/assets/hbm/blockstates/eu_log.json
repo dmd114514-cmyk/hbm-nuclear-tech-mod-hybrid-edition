@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "hbm:eu_log"
+    },
+    "axis=z": {
+      "model": "hbm:eu_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "hbm:eu_log",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

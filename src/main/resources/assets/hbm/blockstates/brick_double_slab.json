@@ -1,0 +1,46 @@
+{
+  "variants": {
+    "half=bottom,variant=reinforced_stone": {
+      "model": "hbm:reinforced_stone"
+    },
+    "half=top,variant=reinforced_stone": {
+      "model": "hbm:reinforced_stone"
+    },
+    "half=bottom,variant=reinforced_brick": {
+      "model": "hbm:reinforced_brick"
+    },
+    "half=top,variant=reinforced_brick": {
+      "model": "hbm:reinforced_brick"
+    },
+    "half=bottom,variant=brick_obsidian": {
+      "model": "hbm:brick_obsidian"
+    },
+    "half=top,variant=brick_obsidian": {
+      "model": "hbm:brick_obsidian"
+    },
+    "half=bottom,variant=brick_light": {
+      "model": "hbm:brick_light"
+    },
+    "half=top,variant=brick_light": {
+      "model": "hbm:brick_light"
+    },
+    "half=bottom,variant=brick_compound": {
+      "model": "hbm:brick_compound"
+    },
+    "half=top,variant=brick_compound": {
+      "model": "hbm:brick_compound"
+    },
+    "half=bottom,variant=brick_asbestos": {
+      "model": "hbm:brick_asbestos"
+    },
+    "half=top,variant=brick_asbestos": {
+      "model": "hbm:brick_asbestos"
+    },
+    "half=bottom,variant=brick_fire": {
+      "model": "hbm:brick_fire"
+    },
+    "half=top,variant=brick_fire": {
+      "model": "hbm:brick_fire"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=1": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=2": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=3": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=4": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=5": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=6": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=7": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=8": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=9": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=10": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=11": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=12": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=13": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=14": {
+      "model": "hbm:rail_large_curve_7"
+    },
+    "meta=15": {
+      "model": "hbm:rail_large_curve_7"
+    }
+  }
+}

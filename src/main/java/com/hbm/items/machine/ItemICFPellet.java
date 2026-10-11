@@ -1,0 +1,193 @@
+package com.hbm.items.machine;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+
+import com.hbm.inventory.fluid.FluidType;
+import com.hbm.inventory.fluid.Fluids;
+import com.hbm.inventory.material.Mats;
+import com.hbm.inventory.material.NTMMaterial;
+import com.hbm.items.IColoredItem;
+import com.hbm.items.IMultiModelItem;
+import com.hbm.items.ModItems;
+import com.hbm.util.BobMathUtil;
+import com.hbm.util.EnumUtil;
+import com.hbm.util.i18n.I18nUtil;
+
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+
+/**
+ * The ICF fusion pellet. Its two fuels ride NBT's `type1`/`type2` (enum ordinals), `muon` the muon-catalyst flag, and
+ * `depletion` is the burned amount — making it the "one item carrying many states" kind: no meta, everything in NBT.
+ *
+ * The old look was two render passes: pass 0 drawing `icf_pellet_bg` tinted by the two fuels' average color, pass 1 overlaying the base. Here
+ * item looks are model-JSON-driven, so "swap texture + tint by pass" becomes a two-layer model:
+ * `layer0 = icf_pellet_bg` (the tinted layer, tintIndex 0), `layer1 = icf_pellet` (true color, tintIndex 1),
+ * tinted via this class's {@link IColoredItem}, registered by ItemColorHandler (timing in its class note).
+ * That two-layer model is the new file `icf_pellet_loaded`, reported via {@link IMultiModelItem} — the repo's existing
+ * `icf_pellet.json` has one layer only, and reordering its layers would delete a line, against the item side's append-only rule.
+ */
+public class ItemICFPellet extends Item implements IColoredItem, IMultiModelItem {
+
+	public static enum EnumICFFuel {
+
+		HYDROGEN(	0x4040FF,	1.00D,	0.85D,	1.00D),
+		DEUTERIUM(	0x2828CB,	1.25D,	1.00D,	1.00D),
+		TRITIUM(	0x000092,	1.50D,	1.00D,	1.05D),
+		HELIUM3(	0xFFF09F,	1.75D,	1.00D,	1.25D),
+		HELIUM4(	0xFF9B60,	2.00D,	1.00D,	1.50D),
+		LITHIUM(	0xE9E9E9,	1.25D,	0.85D,	2.00D),
+		BERYLLIUM(	0xA79D80,	2.00D,	1.00D,	2.50D),
+		BORON(		0x697F89,	3.00D,	0.50D,	3.50D),
+		CARBON(		0x454545,	2.00D,	1.00D,	5.00D),
+		OXYGEN(		0xB4E2FF,	1.25D,	1.50D,	7.50D),
+		SODIUM(		0xDFE4E7,	3.00D,	0.75D,	8.75D),
+		//aluminium, silicon, phosphorus
+		CHLORINE(	0xDAE598,	2.50D,	1.00D,	9.25D),
+		CALCIUM(	0xD2C7A9,	3.00D,	1.00D,	9.75D),
+		//titanium
+		;
+		
+		public int color;
+		public double reactionMult;
+		public double depletionSpeed;
+		public double fusingDifficulty;
+		
+		private EnumICFFuel(int color, double react, double depl, double laser) {
+			this.color = color;
+			this.reactionMult = react;
+			this.depletionSpeed = depl;
+			this.fusingDifficulty = laser;
+		}
+	}
+	
+	public static HashMap<FluidType, EnumICFFuel> fluidMap = new HashMap<FluidType, EnumICFFuel>();
+	public static HashMap<NTMMaterial, EnumICFFuel> materialMap = new HashMap<NTMMaterial, EnumICFFuel>();
+	
+	/*Which fuel the two feeds (fluid or material) map to — the ICF press recognizes feed by these two tables; idempotent, registered */
+	public static void init() {
+		if(!fluidMap.isEmpty() && !materialMap.isEmpty()) return;
+		fluidMap.put(Fluids.HYDROGEN, EnumICFFuel.HYDROGEN);
+		fluidMap.put(Fluids.DEUTERIUM, EnumICFFuel.DEUTERIUM);
+		fluidMap.put(Fluids.TRITIUM, EnumICFFuel.TRITIUM);
+		fluidMap.put(Fluids.HELIUM3, EnumICFFuel.HELIUM3);
+		fluidMap.put(Fluids.HELIUM4, EnumICFFuel.HELIUM4);
+		materialMap.put(Mats.MAT_LITHIUM, EnumICFFuel.LITHIUM);
+		materialMap.put(Mats.MAT_BERYLLIUM, EnumICFFuel.BERYLLIUM);
+		materialMap.put(Mats.MAT_BORON, EnumICFFuel.BORON);
+		materialMap.put(Mats.MAT_GRAPHITE, EnumICFFuel.CARBON);
+		fluidMap.put(Fluids.OXYGEN, EnumICFFuel.OXYGEN);
+		materialMap.put(Mats.MAT_SODIUM, EnumICFFuel.SODIUM);
+		fluidMap.put(Fluids.CHLORINE, EnumICFFuel.CHLORINE);
+		materialMap.put(Mats.MAT_CALCIUM, EnumICFFuel.CALCIUM);
+	}
+
+	public ItemICFPellet() {
+		this.setMaxStackSize(1);
+	}
+
+	@Override
+	public String[] subtypeModels() {
+		return new String[] { "icf_pellet_loaded" };
+	}
+	
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
+
+		if(tab != CreativeTabs.SEARCH && !isInCreativeTab(tab)) return;
+
+		list.add(this.setup(EnumICFFuel.DEUTERIUM, EnumICFFuel.TRITIUM, false));
+		list.add(this.setup(EnumICFFuel.HELIUM3, EnumICFFuel.HELIUM4, false));
+		list.add(this.setup(EnumICFFuel.LITHIUM, EnumICFFuel.OXYGEN, false));
+		list.add(this.setup(EnumICFFuel.SODIUM, EnumICFFuel.CHLORINE, true));
+		list.add(this.setup(EnumICFFuel.BERYLLIUM, EnumICFFuel.CALCIUM, true));
+	}
+	
+	public static long getMaxDepletion(ItemStack stack) {
+		long base = 50_000_000_000L;
+		base /= getType(stack, true).depletionSpeed;
+		base /= getType(stack, false).depletionSpeed;
+		return base;
+	}
+	
+	public static long getFusingDifficulty(ItemStack stack) {
+		long base = 10_000_000L;
+		base *= getType(stack, true).fusingDifficulty * getType(stack, false).fusingDifficulty;
+		if(stack.hasTagCompound() && stack.getTagCompound().getBoolean("muon")) base /= 4;
+		return base;
+	}
+	
+	public static long getDepletion(ItemStack stack) {
+		if(!stack.hasTagCompound()) return 0L;
+		return stack.getTagCompound().getLong("depletion");
+	}
+	
+	public static long react(ItemStack stack, long heat) {
+		if(!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
+		NBTTagCompound nbt = stack.getTagCompound();
+		nbt.setLong("depletion", nbt.getLong("depletion") + heat);
+		return (long) (heat * getType(stack, true).reactionMult * getType(stack, false).reactionMult);
+	}
+	
+	public static ItemStack setup(EnumICFFuel type1, EnumICFFuel type2, boolean muon) {
+		return setup(new ItemStack(ModItems.icf_pellet), type1, type2, muon);
+	}
+	
+	public static ItemStack setup(ItemStack stack, EnumICFFuel type1, EnumICFFuel type2, boolean muon) {
+		if(!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
+		NBTTagCompound nbt = stack.getTagCompound();
+		nbt.setByte("type1", (byte) type1.ordinal());
+		nbt.setByte("type2", (byte) type2.ordinal());
+		nbt.setBoolean("muon", muon);
+		return stack;
+	}
+	
+	public static EnumICFFuel getType(ItemStack stack, boolean first) {
+		if(!stack.hasTagCompound()) return first ? EnumICFFuel.DEUTERIUM : EnumICFFuel.TRITIUM;
+		return EnumUtil.grabEnumSafely(EnumICFFuel.class, stack.getTagCompound().getByte("type" + (first ? 1 : 2)));
+	}
+
+	@Override
+	public boolean showDurabilityBar(ItemStack stack) {
+		return getDurabilityForDisplay(stack) > 0D;
+	}
+
+	@Override
+	public double getDurabilityForDisplay(ItemStack stack) {
+		return (double) getDepletion(stack) / (double) getMaxDepletion(stack);
+	}
+
+	/*The background layer (the model's layer0, tintIndex 0) tints by the two fuels' average color; the body layer stays untinted */
+	@Override
+	public int getColor(ItemStack stack, int tintIndex) {
+
+		if(tintIndex != 0) return 0xFFFFFF;
+
+		EnumICFFuel type1 = getType(stack, true);
+		EnumICFFuel type2 = getType(stack, false);
+
+		int r = (((type1.color & 0xff0000) >> 16) + ((type2.color & 0xff0000) >> 16)) / 2;
+		int g = (((type1.color & 0x00ff00) >> 8) + ((type2.color & 0x00ff00) >> 8)) / 2;
+		int b = ((type1.color & 0x0000ff) + (type2.color & 0x0000ff)) / 2;
+
+		return r << 16 | g << 8 | b;
+	}
+	
+	@Override
+	public void addInformation(ItemStack stack, World world, List<String> list, ITooltipFlag flag) {
+		boolean muon = stack.hasTagCompound() && stack.getTagCompound().getBoolean("muon");
+		list.add(TextFormatting.GREEN + "Depletion: " + String.format(Locale.US, "%.1f", getDurabilityForDisplay(stack) * 100D) + "%");
+		list.add(TextFormatting.YELLOW + "Fuel: " + I18nUtil.resolveKey("icffuel." + getType(stack, true).name().toLowerCase(Locale.US)) + " / " + I18nUtil.resolveKey("icffuel." + getType(stack, false).name().toLowerCase(Locale.US)));
+		list.add(TextFormatting.YELLOW + "Heat required: " + BobMathUtil.getShortNumber(getFusingDifficulty(stack)) + "TU");
+		list.add(TextFormatting.YELLOW + "Reactivity multiplier: x" + (int) (getType(stack, true).reactionMult * getType(stack, false).reactionMult * 100) / 100D);
+		if(muon) list.add(TextFormatting.DARK_AQUA + "Muon catalyzed!");
+	}
+}

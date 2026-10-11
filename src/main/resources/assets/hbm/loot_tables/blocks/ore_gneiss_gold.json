@@ -1,0 +1,15 @@
+{
+  "pools": [
+    {
+      "name": "ore_gneiss_gold",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "hbm:ore_gneiss_gold",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

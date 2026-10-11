@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "normal": {
+      "model": "hbm:ct/blocks/deco_beryllium"
+    }
+  }
+}

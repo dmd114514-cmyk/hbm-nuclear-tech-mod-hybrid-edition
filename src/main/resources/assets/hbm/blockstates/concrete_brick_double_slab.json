@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "half=bottom,variant=brick_concrete": {
+      "model": "hbm:brick_concrete"
+    },
+    "half=top,variant=brick_concrete": {
+      "model": "hbm:brick_concrete"
+    },
+    "half=bottom,variant=brick_concrete_mossy": {
+      "model": "hbm:brick_concrete_mossy"
+    },
+    "half=top,variant=brick_concrete_mossy": {
+      "model": "hbm:brick_concrete_mossy"
+    },
+    "half=bottom,variant=brick_concrete_cracked": {
+      "model": "hbm:brick_concrete_cracked"
+    },
+    "half=top,variant=brick_concrete_cracked": {
+      "model": "hbm:brick_concrete_cracked"
+    },
+    "half=bottom,variant=brick_concrete_broken": {
+      "model": "hbm:brick_concrete_broken"
+    },
+    "half=top,variant=brick_concrete_broken": {
+      "model": "hbm:brick_concrete_broken"
+    },
+    "half=bottom,variant=brick_ducrete": {
+      "model": "hbm:brick_ducrete"
+    },
+    "half=top,variant=brick_ducrete": {
+      "model": "hbm:brick_ducrete"
+    }
+  }
+}

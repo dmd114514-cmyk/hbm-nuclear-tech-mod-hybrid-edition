@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "side": "hbm:blocks/astroturf_side",
+    "top": "hbm:blocks/astroturf_top",
+    "bottom": "hbm:blocks/astroturf_top"
+  }
+}

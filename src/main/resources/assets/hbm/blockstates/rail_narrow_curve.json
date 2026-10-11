@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=1": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=2": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=3": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=4": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=5": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=6": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=7": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=8": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=9": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=10": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=11": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=12": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=13": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=14": {
+      "model": "hbm:rail_narrow_curve"
+    },
+    "meta=15": {
+      "model": "hbm:rail_narrow_curve"
+    }
+  }
+}

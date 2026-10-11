@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "normal": {
+      "model": "hbm:ct/blocks/glass_polonium"
+    }
+  }
+}

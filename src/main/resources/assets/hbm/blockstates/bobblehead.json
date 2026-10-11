@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=1": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=2": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=3": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=4": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=5": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=6": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=7": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=8": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=9": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=10": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=11": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=12": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=13": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=14": {
+      "model": "hbm:bobblehead"
+    },
+    "meta=15": {
+      "model": "hbm:bobblehead"
+    }
+  }
+}

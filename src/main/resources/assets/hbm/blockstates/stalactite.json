@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "variant=sulfur": {
+      "model": "hbm:stalactite_sulfur"
+    },
+    "variant=asbestos": {
+      "model": "hbm:stalactite_asbestos"
+    },
+    "variant=flesh": {
+      "model": "hbm:stalactite_flesh"
+    },
+    "variant=ice": {
+      "model": "hbm:stalactite_ice"
+    },
+    "variant=snow": {
+      "model": "hbm:stalactite_snow"
+    },
+    "variant=glyphid1": {
+      "model": "hbm:stalactite_glyphid1"
+    },
+    "variant=glyphid2": {
+      "model": "hbm:stalactite_glyphid2"
+    },
+    "variant=glyphid3": {
+      "model": "hbm:stalactite_glyphid3"
+    }
+  }
+}

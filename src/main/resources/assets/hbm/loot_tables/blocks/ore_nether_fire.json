@@ -1,0 +1,20 @@
+{
+  "pools": [
+    {
+      "name": "ore_nether_fire",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "hbm:ingot_phosphorus",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "hbm:powder_fire",
+          "weight": 9
+        }
+      ]
+    }
+  ]
+}

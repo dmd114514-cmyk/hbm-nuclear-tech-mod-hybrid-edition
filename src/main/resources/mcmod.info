@@ -1,0 +1,16 @@
+[
+{
+  "modid": "hbm",
+  "name": "HBM's Nuclear Tech Mod - Hybrid Edition",
+  "description": "A mod that adds weapons, nuclear themed stuff and space travel. Ported from 1.7.10 to 1.12.2.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["vanillaDev"],
+  "credits": "Bobcat and the HBM/NTM contributors (original mod), GPLv3",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

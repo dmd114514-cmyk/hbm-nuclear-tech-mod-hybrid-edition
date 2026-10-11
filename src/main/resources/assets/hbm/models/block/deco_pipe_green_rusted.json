@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "hbm:blocks/pipe_top_green_rusty"
+  }
+}

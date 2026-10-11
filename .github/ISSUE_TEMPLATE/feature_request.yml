@@ -1,0 +1,56 @@
+name: Feature request
+description: Suggest new content, an improvement, or a new scripting hook
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is a port of the 1.7.10 mod, so **matching the original comes first**. Gameplay ideas that deliberately
+        diverge from the original usually will not be accepted; requests about the modpack-facing scripting surface are
+        very welcome.
+
+  - type: textarea
+    id: want
+    attributes:
+      label: What you want
+      placeholder: One sentence saying what should happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why (the use case)
+      placeholder: e.g. I am building a modpack and need to change the output of X by progression stage
+    validations:
+      required: true
+
+  - type: textarea
+    id: alt
+    attributes:
+      label: What you do today instead
+      description: Can config, CraftTweaker or loot tables already cover this? If so, what is still missing?
+    validations:
+      required: false
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - Missing content from the original
+        - Modpack scripting surface (CraftTweaker / loot tables / config)
+        - Compatibility (JEI and friends)
+        - Performance or stability
+        - Something else
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: willing
+    attributes:
+      label: Willingness
+      options:
+        - label: I would like to implement this myself
+        - label: I would need guidance to implement it

@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "hbm:items/icf_pellet_bg",
+    "layer1": "hbm:items/icf_pellet"
+  }
+}

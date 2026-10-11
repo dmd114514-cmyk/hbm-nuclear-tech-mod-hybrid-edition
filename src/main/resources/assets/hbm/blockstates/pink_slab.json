@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=bottom": {
+      "model": "hbm:pink_planks_half"
+    },
+    "half=top": {
+      "model": "hbm:pink_planks_upper"
+    }
+  }
+}

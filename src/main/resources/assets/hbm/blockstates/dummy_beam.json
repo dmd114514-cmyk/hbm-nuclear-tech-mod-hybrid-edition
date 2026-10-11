@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=1": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=2": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=3": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=4": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=5": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=6": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=7": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=8": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=9": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=10": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=11": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=12": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=13": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=14": {
+      "model": "hbm:dummy_beam"
+    },
+    "meta=15": {
+      "model": "hbm:dummy_beam"
+    }
+  }
+}

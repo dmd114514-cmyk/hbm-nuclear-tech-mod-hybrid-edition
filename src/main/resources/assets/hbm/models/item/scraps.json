@@ -1,0 +1,10 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "hbm:items/scraps"
+  },
+  "overrides": [
+    { "predicate": { "hbm:liquid": 1 }, "model": "hbm:item/scraps_liquid" },
+    { "predicate": { "hbm:additive": 1 }, "model": "hbm:item/scraps_additive" }
+  ]
+}

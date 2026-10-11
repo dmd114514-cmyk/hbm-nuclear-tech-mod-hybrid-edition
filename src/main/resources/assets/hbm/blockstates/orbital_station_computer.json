@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "normal": {
+      "model": "hbm:orbital_station_computer"
+    }
+  }
+}
